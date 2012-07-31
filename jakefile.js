@@ -1,12 +1,6 @@
-task("default", [], function() {
-	console.log("Executing: Default task");
-});
+task("default", ["lint"]);
 
-desc("Example");
-task("example", ["dependency"], function() {
-	console.log("example task");
-});
-
-task("dependency", function(){
-	console.log("dependency task");
+desc("Lint everything");
+task("lint", [], function() {
+	console.log("Lint goes here");
 });
