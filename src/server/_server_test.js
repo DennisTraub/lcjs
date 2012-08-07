@@ -2,6 +2,6 @@
 "use strict";
 
 exports.testNothing = function(test) {
-	test.ok(true, "hello");
+	test.equals(4, 3, "number");
 	test.done();
 };
