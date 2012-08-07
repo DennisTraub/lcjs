@@ -1,14 +1,15 @@
+// Copyright (c) 2012 Dennis Traub. All rights reserved. See LICENSE.txt for details.
+
 /*global desc, task, jake, fail, complete */
 
 (function() {
 	"use strict";
 
 	desc("Build and test");
-	task("default", ["lint"]);
+	task("default", ["lint", "test"]);
 
 	desc("Lint everything");
 	task("lint", [], function() {
-		console.log("Running Lint:");
 		var lint = require("./build/lint/lint_runner.js");
 
 		var files = new jake.FileList();
@@ -17,8 +18,18 @@
 
 		var options = nodeLintOptions();
 
-		lint.validateFileList(files.toArray(), options, {});
+		var passed = lint.validateFileList(files.toArray(), options, {});
+		if (!passed) fail("Lint failed");
 	});
+
+	desc("Test everything");
+	task("test", [], function() {
+		var reporter = require("nodeunit").reporters["default"];
+		reporter.run(['src/server/_server_test.js'], null, function(failures) {
+			if (failures) fail("Tests failed");
+			complete();
+		});
+	}, { async: true });
 
 	desc("Integrate");
 	task("integrate", ["default"], function() {

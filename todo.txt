@@ -14,6 +14,14 @@ User Stories:
 - marketing copy
 
 Engineering Tasks:
-* continuous integration
-- server-side testing
-- client-side testing
+- Create a very simple HTTP server
+
+To do on current task:
+
+
+Future ideas:
+- Abstract test framework? (Swap out a different framework to make sure abstraction works)
+- Modify LICENSE.TXT
+
+Notes:
+- NodeUnit doesn't work properly on windows
