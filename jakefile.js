@@ -6,11 +6,10 @@
 	"use strict";
 
 	desc("Build and test");
-	task("default", ["lint"]);
+	task("default", ["lint", "test"]);
 
 	desc("Lint everything");
 	task("lint", [], function() {
-		console.log("Running Lint:");
 		var lint = require("./build/lint/lint_runner.js");
 
 		var files = new jake.FileList();
@@ -21,6 +20,11 @@
 
 		var passed = lint.validateFileList(files.toArray(), options, {});
 		if (!passed) fail("Lint failed");
+	});
+
+	desc("Test everything");
+	task("test", [], function() {
+		console.log("Test goes here.");
 	});
 
 	desc("Integrate");
