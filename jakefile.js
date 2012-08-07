@@ -1,3 +1,5 @@
+// Copyright (c) 2012 Dennis Traub. All rights reserved. See LICENSE.txt for details.
+
 /*global desc, task, jake, fail, complete */
 
 (function() {
