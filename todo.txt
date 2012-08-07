@@ -20,6 +20,9 @@ Engineering Tasks:
 To do on current task:
 
 
-Future ideas
+Future ideas:
 - Abstract test framework? (Swap out a different framework to make sure abstraction works)
 - Modify LICENSE.TXT
+
+Notes:
+- NodeUnit doesn't work properly on windows
