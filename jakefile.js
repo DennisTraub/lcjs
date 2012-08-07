@@ -25,7 +25,7 @@
 	desc("Test everything");
 	task("test", [], function() {
 		var reporter = require("nodeunit").reporters["default"];
-		reporter.run(['test']);
+		reporter.run(['src/server']);
 	});
 
 	desc("Integrate");
