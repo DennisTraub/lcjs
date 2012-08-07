@@ -14,8 +14,7 @@ User Stories:
 - marketing copy
 
 Engineering Tasks:
-* server-side testing
-- client-side testing
+- Create a very simple HTTP server
 
 To do on current task:
 
