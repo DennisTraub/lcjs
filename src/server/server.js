@@ -1,8 +1,18 @@
 // Copyright (c) 2012 Dennis Traub. All rights reserved. See LICENSE.txt for details.
 "use strict";
 
-console.log("Hello, I'm a server. No, really! What?");
+var http = require("http");
+var server;
 
-exports.number = function() {
-	return 3;
+exports.start = function() {
+	server = http.createServer();
+	server.on("request", function(request, response) {
+		response.end("foo");
+	});
+
+	server.listen(8080);
+};
+
+exports.stop = function(callback) {
+	server.close(callback);
 };

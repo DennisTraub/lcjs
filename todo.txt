@@ -17,7 +17,7 @@ Engineering Tasks:
 - Create a very simple HTTP server
 
 To do on current task:
-
+- Modify build script to enforce node version
 
 Future ideas:
 - Abstract test framework? (Swap out a different framework to make sure abstraction works)
