@@ -8,7 +8,7 @@ exports.testHttpServer = function(test) {
 	server.start();
 
 	http.get("http://localhost:8080", function(response) {
-		test.ok(response === null, "response");
+
 	});
 
 	test.done();
