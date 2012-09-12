@@ -8,13 +8,8 @@ var fs = require("fs");
 exports.test_server_serves_a_file = function(test) {
     var html = "<html><body><p>Test file</p></body></html>";
 
-    var dir = "generated",
-        subdir = "test",
-        testDir = dir + "/" + subdir,
-        testFile = testDir + "/test.html";
+    var testFile = "generated/test/test.html";
 
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-    if (!fs.existsSync(testDir)) fs.mkdirSync(testDir);
     fs.writeFileSync(testFile, html);
 
     server.start(8080);
