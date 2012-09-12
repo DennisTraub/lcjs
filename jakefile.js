@@ -5,8 +5,15 @@
 (function() {
 	"use strict";
 
-	desc("Build and test");
-	task("default", ["lint", "test"]);
+	var GENERATED_DIR = "generated";
+	var	TEMP_TESTFILE_DIR = GENERATED_DIR + "/test";
+
+//	desc("Ensure correct version of node is present");
+	task("node", [], function() {
+		var requiredNodeVersion = 'v0.8';
+		if (process.version.substr(0, 4) !== requiredNodeVersion.substr(0, 4))
+			fail("Incorrect node version. Expected " + requiredNodeVersion + ".*");
+	});
 
 	desc("Lint everything");
 	task("lint", ["node"], function() {
@@ -22,14 +29,27 @@
 		if (!passed) fail("Lint failed");
 	});
 
+	desc("Create directory for tests");
+	task("create_temp_dirs", ["lint"], function() {
+		jake.mkdirP(TEMP_TESTFILE_DIR);
+	});
+
 	desc("Test everything");
-	task("test", ["node"], function() {
+	task("test", ["node", "create_temp_dirs"], function() {
 		var reporter = require("nodeunit").reporters["default"];
 		reporter.run(['src/server/_server_test.js'], null, function(failures) {
 			if (failures) fail("Tests failed");
 			complete();
 		});
 	}, { async: true });
+
+	desc("Delete all generated files");
+	task("clean", ["test"], function() {
+		jake.rmRf(GENERATED_DIR);
+	});
+
+	desc("Build and test");
+	task("default", ["lint", "test", "clean"]);
 
 	desc("Integrate");
 	task("integrate", ["default"], function() {
@@ -44,12 +64,7 @@
 		console.log("5. 'git checkout master'");
 	});
 
-//	desc("Ensure correct version of node is present");
-	task("node", [], function() {
-		var requiredNodeVersion = 'v0.8';
-		if (process.version.substr(0, 4) !== requiredNodeVersion.substr(0, 4))
-			fail("Incorrect node version. Expected " + requiredNodeVersion + ".*");
-	});
+
 
 	function nodeLintOptions() {
 		return {
