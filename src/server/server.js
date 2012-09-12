@@ -7,6 +7,7 @@ var server;
 exports.start = function() {
 	server = http.createServer();
 	server.on("request", function(request, response) {
+		response.write("Hello World");
 		response.end();
 	});
 

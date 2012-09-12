@@ -10,9 +10,19 @@ exports.tearDown = function(done) {
 	});
 };
 
-exports.testHttpServer = function(test) {
+exports.test_serverReturnsHelloWorld = function(test) {
 	server.start();
 	http.get("http://localhost:8080", function(response) {
-		test.done();
+		test.equals(200, response.statusCode, "status code");
+		response.setEncoding("utf-8");
+
+		response
+			.on("data", function(chunk) {
+				test.equals("Hello World", chunk, "response text");
+			})
+			.on("end", function() {
+				test.done();
+			});
+
 	});
 };
