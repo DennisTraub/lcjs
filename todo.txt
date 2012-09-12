@@ -13,9 +13,9 @@ User Stories:
 - marketing copy
 
 Engineering Tasks:
+* Serve a file
 
 To do on current task:
-* Modify build script to enforce node version
 
 Future ideas:
 - Create 'fail fast' assertion code
