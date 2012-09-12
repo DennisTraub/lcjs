@@ -9,7 +9,7 @@
 	task("default", ["lint", "test"]);
 
 	desc("Lint everything");
-	task("lint", [], function() {
+	task("lint", ["node"], function() {
 		var lint = require("./build/lint/lint_runner.js");
 
 		var files = new jake.FileList();
@@ -23,7 +23,7 @@
 	});
 
 	desc("Test everything");
-	task("test", [], function() {
+	task("test", ["node"], function() {
 		var reporter = require("nodeunit").reporters["default"];
 		reporter.run(['src/server/_server_test.js'], null, function(failures) {
 			if (failures) fail("Tests failed");
@@ -42,6 +42,13 @@
 		console.log("3. 'git checkout integration'");
 		console.log("4. 'git merge master --no-ff --log'");
 		console.log("5. 'git checkout master'");
+	});
+
+//	desc("Ensure correct version of node is present");
+	task("node", [], function() {
+		var requiredNodeVersion = 'v0.8';
+		if (process.version.substr(0, 4) !== requiredNodeVersion.substr(0, 4))
+			fail("Incorrect node version. Expected " + requiredNodeVersion + ".*");
 	});
 
 	function nodeLintOptions() {

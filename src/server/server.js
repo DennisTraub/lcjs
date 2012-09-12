@@ -4,14 +4,15 @@
 var http = require("http");
 var server;
 
-exports.start = function(port) {
+exports.start = function(portNumber) {
+    if (!portNumber) throw "port number is missing";
+    
 	server = http.createServer();
 	server.on("request", function(request, response) {
-		response.write("Hello World");
-		response.end();
+		response.end("Hello World");
 	});
 
-	server.listen(port);
+	server.listen(portNumber);
 };
 
 exports.stop = function(callback) {
