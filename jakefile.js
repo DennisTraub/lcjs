@@ -46,9 +46,9 @@
 
 //	desc("Ensure correct version of node is present");
 	task("node", [], function() {
-		var requiredNodeVersion = 'v0.8.1';
-		if (process.version !== requiredNodeVersion)
-			fail("Incorrect node version. Expected " + requiredNodeVersion);
+		var requiredNodeVersion = 'v0.8';
+		if (process.version.substr(0, 4) !== requiredNodeVersion.substr(0, 4))
+			fail("Incorrect node version. Expected " + requiredNodeVersion + ".*");
 	});
 
 	function nodeLintOptions() {
