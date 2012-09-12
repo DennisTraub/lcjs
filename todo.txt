@@ -15,7 +15,7 @@ User Stories:
 Engineering Tasks:
 
 To do on current task:
-- Modify build script to enforce node version
+* Modify build script to enforce node version
 
 Future ideas:
 - Create 'fail fast' assertion code
