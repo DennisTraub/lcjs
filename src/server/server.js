@@ -3,9 +3,11 @@
 
 var http = require("http");
 var server;
+var serverIsRunning = false;
 
 exports.start = function(port) {
 	server = http.createServer();
+	serverIsRunning = true;
 	server.on("request", function(request, response) {
 		response.write("Hello World");
 		response.end();
@@ -15,5 +17,10 @@ exports.start = function(port) {
 };
 
 exports.stop = function(callback) {
-	server.close(callback);
+	if (serverIsRunning) {
+		server.close(callback);
+		serverIsRunning = false;
+	} else {
+		callback();
+	}
 };
