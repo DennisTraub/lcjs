@@ -3,24 +3,18 @@
 
 var http = require("http");
 var server;
-var serverIsRunning = false;
 
-exports.start = function(port) {
+exports.start = function(portNumber) {
+    if (!portNumber) throw "port number is missing";
+    
 	server = http.createServer();
-	serverIsRunning = true;
 	server.on("request", function(request, response) {
-		response.write("Hello World");
-		response.end();
+		response.end("Hello World");
 	});
 
-	server.listen(port);
+	server.listen(portNumber);
 };
 
 exports.stop = function(callback) {
-	if (serverIsRunning) {
-		server.close(callback);
-		serverIsRunning = false;
-	} else {
-		callback();
-	}
+	server.close(callback);
 };

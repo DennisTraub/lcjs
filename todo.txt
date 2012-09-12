@@ -8,18 +8,17 @@ Minimum Marketable Feature:
 - more collaborative features?
 
 User Stories:
-* "hello world" server
 - "hello world" client (one browser)
 - support multiple browsers
 - marketing copy
 
 Engineering Tasks:
-- Create a very simple HTTP server
 
 To do on current task:
 - Modify build script to enforce node version
 
 Future ideas:
+- Create 'fail fast' assertion code
 - Abstract test framework? (Swap out a different framework to make sure abstraction works)
 - Modify LICENSE.TXT
 
